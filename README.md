@@ -1,10 +1,10 @@
-# shooters-open
+# 42game-shooters
 
 [![Linux.do](https://img.shields.io/badge/Linux.do-community-0EA5E9?logo=discourse&logoColor=white)](https://linux.do)
 
 [English README](./README.en.md)
 
-`shooters-open` 是基于上游项目 [`jay6697117/shooters`](https://github.com/jay6697117/shooters) 的二次开发开源版本，继续沿用 [MIT License](./LICENSE)。
+`42game-shooters` 是基于上游项目 [`jay6697117/shooters`](https://github.com/jay6697117/shooters) 的二次开发开源版本，继续沿用 [MIT License](./LICENSE)。
 
 这个仓库保留了继续开发和部署所需的核心内容：前端游戏逻辑、Node.js 服务端、资源文件、PVP 相关脚本与测试；同时移除了本地工具目录、缓存、构建产物和历史运行数据。
 
