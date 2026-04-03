@@ -1,6 +1,7 @@
 # 42game-shooters
 
 [![Linux.do](https://img.shields.io/badge/Linux.do-community-0EA5E9?logo=discourse&logoColor=white)](https://linux.do)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-game.42w.shop-22C55E?logo=googlechrome&logoColor=white)](https://game.42w.shop)
 
 [Chinese README](./README.md)
 
@@ -9,6 +10,8 @@ An open-source derivative release based on the upstream project [`jay6697117/sho
 This repository keeps the gameplay code, Node.js server, assets, and PVP-related scripts required for further development and deployment, while excluding local tooling, caches, generated output, and historical runtime data.
 
 Thanks to the Linux.do community for the testing, feedback, and discussion support.
+
+Live demo: <https://game.42w.shop>
 
 ## Overview
 
