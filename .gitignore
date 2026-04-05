@@ -13,3 +13,9 @@ npm-debug.log*
 data/*.json
 !data/app-config.example.json
 data/pvp-replays/
+docs/
+/03*.md
+/315.md
+/progress.md
+/open_*.md
+/QQ*.jpg
