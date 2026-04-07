@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CDK 鍚庡彴</title>
+  <title>CDK 閸氬骸褰?/title>
   <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -26,6 +26,35 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Dark scrollbar */
+    html {
+      scrollbar-color: rgba(163, 163, 163, 0.28) #0a0a0a;
+      scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(163, 163, 163, 0.28), rgba(64, 64, 64, 0.5));
+      border-radius: 999px;
+      border: 2px solid #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, rgba(163, 163, 163, 0.42), rgba(64, 64, 64, 0.7));
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: #0a0a0a;
+    }
 
     body {
       margin: 0;
@@ -236,140 +265,135 @@
 <body>
   <div class="page">
     <section class="hero">
-      <div class="eyebrow">Linux.do CDK 鎺у埗鍙?/div>
-      <h1>CDK 濂栨睜绠＄悊 + Linux.do 鐧诲綍</h1>
+      <div class="eyebrow">Linux.do CDK 閹貉冨煑閸?/div>
+      <h1>CDK 婵傛牗鐫滅粻锛勬倞 + Linux.do 閻ц缍?/h1>
       <p class="subtle">
-        杩欓噷鏄綋鍓嶅皠鍑绘紨绀洪」鐩殑鍚庡彴銆備綘鍙互瀵煎叆 PVE / PVP 鍏戞崲鐮併€佹煡鐪嬪彂鐮佷笌瀵瑰眬鍘嗗彶銆?
-        骞剁洿鎺ヨ皟鏁存瘡鏃ュ彂鐮佽鍒欍€?
+        鏉╂瑩鍣烽弰顖氱秼閸撳秴鐨犻崙缁樼川缁€娲€嶉惄顔炬畱閸氬骸褰撮妴鍌欑稑閸欘垯浜掔€电厧鍙?PVE / PVP 閸忔垶宕查惍浣碘偓浣圭叀閻褰傞惍浣风瑢鐎电懓鐪崢鍡楀蕉閵?
+        楠炲墎娲块幒銉ㄧ殶閺佸瓨鐦￠弮銉ュ絺閻浇顫夐崚娆嶁偓?
       </p>
       <div class="topbar">
         <div class="session-pill" id="sessionPill">
           <img class="avatar hidden" id="sessionAvatar" alt="" />
-          <span id="sessionText">姝ｅ湪妫€鏌ョ櫥褰曠姸鎬?..</span>
+          <span id="sessionText">濮濓絽婀Λ鈧弻銉ф瑜版洜濮搁幀?..</span>
         </div>
         <div class="actions">
-          <a class="button-link secondary" href="/">杩斿洖娓告垙</a>
-          <a class="button-link hidden" id="loginLink" href="/auth/linuxdo/start?returnTo=/admin.html">浣跨敤 Linux.do 鐧诲綍</a>
-          <button class="secondary hidden" id="logoutButton" type="button">閫€鍑虹櫥褰?/button>
-          <button class="hidden" id="refreshButton" type="button">鍒锋柊</button>
+          <a class="button-link secondary" href="/">鏉╂柨娲栧〒鍛婂灆</a>
+          <a class="button-link hidden" id="loginLink" href="/auth/linuxdo/start?returnTo=/admin.html">娴ｈ法鏁?Linux.do 閻ц缍?/a>
+          <button class="secondary hidden" id="logoutButton" type="button">闁偓閸戣櫣娅ヨぐ?/button>
+          <button class="hidden" id="refreshButton" type="button">閸掗攱鏌?/button>
         </div>
       </div>
-      <div class="minor" id="awardSecurityText">姝ｅ湪璇诲彇褰撳墠鍙戠爜妯″紡...</div>
+      <div class="minor" id="awardSecurityText">濮濓絽婀拠璇插絿瑜版挸澧犻崣鎴犵垳濡€崇础...</div>
     </section>
 
     <section class="panel gate hidden" id="gatePanel">
-      <h2>闇€瑕佸悗鍙版潈闄?/h2>
-      <p id="gateText">璇蜂娇鐢ㄥ凡鍔犲叆绠＄悊鍛樼櫧鍚嶅崟鐨?Linux.do 璐﹀彿鐧诲綍锛屾墠鑳借繘鍏ュ悗鍙般€?/p>
+      <h2>闂団偓鐟曚礁鎮楅崣鐗堟綀闂?/h2>
+      <p id="gateText">鐠囪渹濞囬悽銊ュ嚒閸旂姴鍙嗙粻锛勬倞閸涙娅ч崥宥呭礋閻?Linux.do 鐠愶箑褰块惂璇茬秿閿涘本澧犻懗鍊熺箻閸忋儱鎮楅崣鑸偓?/p>
     </section>
 
     <section class="grid hidden" id="adminApp">
       <div class="panel span-2">
-        <h2>鍙戠爜瑙勫垯</h2>
+        <h2>閸欐垹鐖滅憴鍕灟</h2>
         <p>
-          杩欓噷鍙互鐩存帴閰嶇疆姣忔棩鍙戠爜涓婇檺锛屼繚瀛樺悗浼氬啓鍏?<code>data/app-config.json</code>銆?
-          濡傛灉鏈嶅姟鍚姩鏃堕厤缃簡 <code>REWARD_LIMIT_*</code> 鐜鍙橀噺锛屽疄闄呯敓鏁堝€间粛浼氫互鐜鍙橀噺涓哄噯銆?
+          鏉╂瑩鍣烽崣顖欎簰閻╁瓨甯撮柊宥囩枂濮ｅ繑妫╅崣鎴犵垳娑撳﹪妾洪敍灞肩箽鐎涙ê鎮楁导姘晸閸?<code>data/app-config.json</code>閵?
+          婵″倹鐏夐張宥呭閸氼垰濮╅弮鍫曞帳缂冾喕绨?<code>REWARD_LIMIT_*</code> 閻滎垰顣ㄩ崣姗€鍣洪敍灞界杽闂勫懐鏁撻弫鍫濃偓闂寸矝娴兼矮浜掗悳顖氼暔閸欐﹢鍣烘稉鍝勫櫙閵?
         </p>
         <div class="policy-summary">
-          <div class="minor" id="rewardPolicySummaryText">姝ｅ湪鍔犺浇鍙戠爜瑙勫垯...</div>
+          <div class="minor" id="rewardPolicySummaryText">濮濓絽婀崝鐘烘祰閸欐垹鐖滅憴鍕灟...</div>
           <div class="minor" id="rewardPolicyOverrideText"></div>
         </div>
         <form id="rewardPolicyForm">
           <div class="reward-policy-grid">
             <label class="span-all">
-              鏃跺尯
-              <input id="rewardTimeZone" type="text" maxlength="64" placeholder="Asia/Shanghai" required />
+              閺冭泛灏?              <input id="rewardTimeZone" type="text" maxlength="64" placeholder="Asia/Shanghai" required />
             </label>
             <label>
-              PVE novice / 鏂版墜
-              <input id="rewardPveNovice" type="number" min="0" step="1" inputmode="numeric" required />
+              PVE novice / 閺傜増澧?              <input id="rewardPveNovice" type="number" min="0" step="1" inputmode="numeric" required />
             </label>
             <label>
-              PVE easy / 绠€鍗?
+              PVE easy / 缁犫偓閸?
               <input id="rewardPveEasy" type="number" min="0" step="1" inputmode="numeric" required />
             </label>
             <label>
-              PVE normal / 鏅€?
+              PVE normal / 閺咁噣鈧?
               <input id="rewardPveNormal" type="number" min="0" step="1" inputmode="numeric" required />
             </label>
             <label>
-              PVE hard / 鍥伴毦
-              <input id="rewardPveHard" type="number" min="0" step="1" inputmode="numeric" required />
+              PVE hard / 閸ヤ即姣?              <input id="rewardPveHard" type="number" min="0" step="1" inputmode="numeric" required />
             </label>
             <label>
-              PVP default / 姣忔棩涓婇檺
+              PVP default / 濮ｅ繑妫╂稉濠囨
               <input id="rewardPvpDefault" type="number" min="0" step="1" inputmode="numeric" required />
             </label>
           </div>
           <div class="actions">
-            <button type="submit">淇濆瓨鍙戠爜瑙勫垯</button>
-            <button class="secondary" id="rewardPolicyResetButton" type="button">鎭㈠褰撳墠宸蹭繚瀛樺€?/button>
+            <button type="submit">娣囨繂鐡ㄩ崣鎴犵垳鐟欏嫬鍨?/button>
+            <button class="secondary" id="rewardPolicyResetButton" type="button">閹垹顦茶ぐ鎾冲瀹歌弓绻氱€涙ê鈧?/button>
           </div>
         </form>
         <div class="message" id="rewardPolicyMessage"></div>
       </div>
 
       <div class="panel">
-        <h2>娣诲姞 CDK</h2>
-        <p>鍏堥€夋嫨濂栨睜锛屽啀涓€琛屼竴涓鍏ュ厬鎹㈢爜銆侾VP 鍏戞崲鐮佸彲浠ユ寜 1v1 / 4 浜?/ 閫氱敤鍏煎鍒嗘睜瀵煎叆锛屾湇鍔＄浼氬師鏍蜂繚瀛橈紝骞惰嚜鍔ㄨ烦杩囧畬鍏ㄩ噸澶嶇殑鐮併€?/p>
+        <h2>濞ｈ濮?CDK</h2>
+        <p>閸忓牓鈧瀚ㄦ總鏍ㄧ潨閿涘苯鍟€娑撯偓鐞涘奔绔存稉顏勵嚤閸忋儱鍘幑銏㈢垳閵嗕揪VP 閸忔垶宕查惍浣稿讲娴犮儲瀵?1v1 / 4 娴?/ 闁氨鏁ら崗鐓庮啇閸掑棙鐫滅€电厧鍙嗛敍灞炬箛閸旓紕顏导姘斧閺嶈渹绻氱€涙﹫绱濋獮鎯板殰閸斻劏鐑︽潻鍥х暚閸忋劑鍣告径宥囨畱閻降鈧?/p>
         <form id="cdkForm">
           <label>
-            鍙戠爜绫诲瀷
-            <select id="cdkPool">
-              <option value="pve">PVE 濂栨睜</option>
-              <option value="pvp_duel">PVP 1v1 濂栨睜</option>
-              <option value="pvp_deathmatch">PVP 4 浜哄姹?/option>
-              <option value="pvp">PVP 閫氱敤濂栨睜锛堝吋瀹癸級</option>
+            閸欐垹鐖滅猾璇茬€?            <select id="cdkPool">
+              <option value="pve">PVE 婵傛牗鐫?/option>
+              <option value="pvp_duel">PVP 1v1 婵傛牗鐫?/option>
+              <option value="pvp_deathmatch">PVP 4 娴滃搫顨涘Ч?/option>
+              <option value="pvp">PVP 闁氨鏁ゆ總鏍ㄧ潨閿涘牆鍚嬬€圭櫢绱?/option>
             </select>
           </label>
           <label>
-            鎵规澶囨敞
-            <input id="batchNote" type="text" maxlength="200" placeholder="鍙€夛紝缁欒繖娆″鍏ュ姞涓€涓娉? />
+            閹佃顐兼径鍥ㄦ暈
+            <input id="batchNote" type="text" maxlength="200" placeholder="閸欘垶鈧绱濈紒娆掔箹濞嗏€愁嚤閸忋儱濮炴稉鈧稉顏勵槵濞? />
           </label>
           <label>
-            CDK 鍒楄〃
-            <textarea id="cdkBulkText" placeholder="ABC123&#10;DEF456&#10;GHI789"></textarea>
+            CDK 閸掓銆?            <textarea id="cdkBulkText" placeholder="ABC123&#10;DEF456&#10;GHI789"></textarea>
           </label>
           <div class="actions">
-            <button id="importButton" type="submit">瀵煎叆鍏戞崲鐮?/button>
-            <button class="secondary" id="clearButton" type="button">娓呯┖</button>
+            <button id="importButton" type="submit">鐎电厧鍙嗛崗鎴炲床閻?/button>
+            <button class="secondary" id="clearButton" type="button">濞撳懐鈹?/button>
           </div>
         </form>
         <div class="message" id="formMessage"></div>
       </div>
 
       <div class="panel">
-        <h2>鐮佹睜姒傝</h2>
-        <p>PVE 涓?PVP 瀹舵棌鍒嗗紑缁熻锛孭VP 浼氱户缁媶鎴?1v1 / 4 浜?/ 閫氱敤鍏煎涓変釜瀛愭睜銆傝繖閲屼細灞曠ず鎬婚噺銆佸彲鍙戞暟閲忋€佸凡娲惧彂鏁伴噺锛屼互鍙婂綋鍓嶇敓鏁堢殑鍙戠爜瑙勫垯鎽樿銆?/p>
+        <h2>閻焦鐫滃鍌濐潔</h2>
+        <p>PVE 娑?PVP 鐎硅埖妫岄崚鍡楃磻缂佺喕顓搁敍瀛璙P 娴兼氨鎴风紒顓熷閹?1v1 / 4 娴?/ 闁氨鏁ら崗鐓庮啇娑撳閲滅€涙劖鐫滈妴鍌濈箹闁插奔绱扮仦鏇犮仛閹鍣洪妴浣稿讲閸欐垶鏆熼柌蹇嬧偓浣稿嚒濞叉儳褰傞弫浼村櫤閿涘奔浜掗崣濠傜秼閸撳秶鏁撻弫鍫㈡畱閸欐垹鐖滅憴鍕灟閹芥顩﹂妴?/p>
         <div class="stats">
           <div class="stat">
-            <span>鎬绘暟</span>
+            <span>閹粯鏆?/span>
             <strong id="statTotal">0</strong>
           </div>
           <div class="stat">
-            <span>鍙淳鍙?/span>
+            <span>閸欘垱娣抽崣?/span>
             <strong id="statAvailable">0</strong>
           </div>
           <div class="stat">
-            <span>宸叉淳鍙?/span>
+            <span>瀹稿弶娣抽崣?/span>
             <strong id="statAssigned">0</strong>
           </div>
         </div>
-        <p id="poolSummaryText">PVE / PVP 鐮佹睜缁熻鍔犺浇涓?..</p>
+        <p id="poolSummaryText">PVE / PVP 閻焦鐫滅紒鐔活吀閸旂姾娴囨稉?..</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>鐘舵€?/th>
-                <th>绫诲瀷</th>
-                <th>鍏戞崲鐮?/th>
-                <th>澶囨敞</th>
-                <th>棰嗗彇浜?/th>
-                <th>棰嗗彇鏃堕棿</th>
+                <th>閻樿埖鈧?/th>
+                <th>缁鐎?/th>
+                <th>閸忔垶宕查惍?/th>
+                <th>婢跺洦鏁?/th>
+                <th>妫板棗褰囨禍?/th>
+                <th>妫板棗褰囬弮鍫曟？</th>
               </tr>
             </thead>
             <tbody id="cdkTableBody">
               <tr>
-                <td colspan="6">鍔犺浇涓?..</td>
+                <td colspan="6">閸旂姾娴囨稉?..</td>
               </tr>
             </tbody>
           </table>
@@ -377,24 +401,24 @@
       </div>
 
       <div class="panel span-2">
-        <h2>瀵瑰眬鍘嗗彶</h2>
-        <p id="matchSummaryText">姝ｅ湪鍔犺浇瀵瑰眬鍘嗗彶...</p>
+        <h2>鐎电懓鐪崢鍡楀蕉</h2>
+        <p id="matchSummaryText">濮濓絽婀崝鐘烘祰鐎电懓鐪崢鍡楀蕉...</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>瀹屾垚鏃堕棿</th>
-                <th>鐜╁</th>
-                <th>绫诲瀷</th>
-                <th>瀵瑰眬</th>
-                <th>缁撴灉</th>
-                <th>濂栧姳</th>
+                <th>鐎瑰本鍨氶弮鍫曟？</th>
+                <th>閻溾晛顔?/th>
+                <th>缁鐎?/th>
+                <th>鐎电懓鐪?/th>
+                <th>缂佹挻鐏?/th>
+                <th>婵傛牕濮?/th>
                 <th>Ticket</th>
               </tr>
             </thead>
             <tbody id="matchTableBody">
               <tr>
-                <td colspan="7">鍔犺浇涓?..</td>
+                <td colspan="7">閸旂姾娴囨稉?..</td>
               </tr>
             </tbody>
           </table>
