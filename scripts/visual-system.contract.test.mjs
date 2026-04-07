@@ -15,6 +15,7 @@ const REQUIRED_EVENTS = [
   'shot_fired',
   'player_hit',
   'kill',
+  'headshot',
   'environment_hit',
   'near_miss',
   'damage_taken',
@@ -76,7 +77,7 @@ test('visual system contract exposes unified tuning and runtime seams', async ()
     for (const weaponId of ['pistol', 'smg', 'shotgun']) {
       const profile = visualModule.visualTuning[modeId][weaponId];
       assert.ok(profile, `visualTuning.${modeId}.${weaponId} must exist`);
-      for (const eventType of ['shot_fired', 'player_hit', 'kill', 'environment_hit']) {
+      for (const eventType of ['shot_fired', 'player_hit', 'kill', 'headshot', 'environment_hit']) {
         assert.ok(profile[eventType], `visualTuning.${modeId}.${weaponId}.${eventType} must exist`);
       }
       for (const key of [
@@ -121,7 +122,7 @@ test('visual system contract exposes unified tuning and runtime seams', async ()
     assert.ok(globalProfile.menu, `visualTuning.${modeId}.global.menu must exist`);
   }
 
-  for (const eventType of ['damage_taken', 'near_miss', 'low_hp', 'kill', 'round_transition']) {
+  for (const eventType of ['damage_taken', 'near_miss', 'low_hp', 'kill', 'headshot', 'round_transition']) {
     assert.ok(
       visualModule.eventSeverityMap[eventType],
       `eventSeverityMap.${eventType} must exist`
