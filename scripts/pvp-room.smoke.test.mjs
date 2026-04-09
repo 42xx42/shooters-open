@@ -580,12 +580,12 @@ test('private duel room starts a live match on the selected map and authoritativ
     cookie: aliceCookie,
     body: {
       mode: 'duel',
-      mapSelection: 'crossfire'
+      mapSelection: 'stronghold'
     }
   });
   assert.equal(createRoomResult.response.status, 200);
   assert.equal(createRoomResult.payload.room.mode, 'duel');
-  assert.equal(createRoomResult.payload.room.mapSelection, 'crossfire');
+  assert.equal(createRoomResult.payload.room.mapSelection, 'stronghold');
 
   const roomCode = createRoomResult.payload.room.roomCode;
   assert.ok(roomCode);
@@ -681,7 +681,7 @@ test('private duel room starts a live match on the selected map and authoritativ
   });
   assert.equal(hostStartResult.response.status, 200);
   assert.equal(hostStartResult.payload.match.mode, 'duel');
-  assert.equal(hostStartResult.payload.match.mapId, 'crossfire');
+  assert.equal(hostStartResult.payload.match.mapId, 'stronghold');
   assert.match(hostStartResult.payload.match.matchId, /^[0-9a-f-]{36}$/u);
 
   const aliceStarting = await aliceWs.waitForType(
@@ -706,8 +706,8 @@ test('private duel room starts a live match on the selected map and authoritativ
   assert.equal(aliceMatchStarted.matchId, bobMatchStarted.matchId);
   assert.equal(aliceMatchStarted.snapshot.players.length, 2);
   assert.equal(bobMatchStarted.snapshot.players.length, 2);
-  assert.equal(aliceMatchStarted.mapId, 'crossfire');
-  assert.equal(aliceMatchStarted.snapshot.mapId, 'crossfire');
+  assert.equal(aliceMatchStarted.mapId, 'stronghold');
+  assert.equal(aliceMatchStarted.snapshot.mapId, 'stronghold');
   assert.equal(aliceMatchStarted.team, 'p1');
   assert.equal(bobMatchStarted.team, 'p2');
 
@@ -731,7 +731,7 @@ test('private duel room starts a live match on the selected map and authoritativ
 
   const aliceBeforeMove = aliceSnapshot.players.find((player) => player.team === 'p1');
   assert.ok(aliceBeforeMove);
-  assert.equal(aliceSnapshot.mapId, 'crossfire');
+  assert.equal(aliceSnapshot.mapId, 'stronghold');
 
   aliceWs.sendJson({
     type: 'pvp.match.input',
