@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="shooters-asset-version" content="20260322-pvp-reward-secure-1" />
+  <meta name="shooters-asset-version" content="20260409-crossfire-map-ui-3" />
   <title>卡通大乱斗</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <style>
@@ -462,6 +462,160 @@
 	      flex-wrap: wrap;
 	      justify-content: center;
 	    }
+
+    #mapSelect {
+      width: 100%;
+      align-items: stretch;
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(126, 220, 255, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(8, 13, 21, 0.92), rgba(4, 8, 14, 0.88));
+      border: 1px solid rgba(126, 220, 255, 0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 20px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    .mapSelectHead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mapSelectHint {
+      max-width: 340px;
+      color: rgba(236, 244, 255, 0.74);
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: right;
+    }
+
+    .mapDeck {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mapChoice {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 12px;
+      min-height: 148px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        rgba(7, 11, 18, 0.76);
+      color: #f4f8ff;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .mapChoice::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(126, 220, 255, 0.14), transparent 46%),
+        linear-gradient(180deg, transparent, rgba(126, 220, 255, 0.03));
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .mapChoice:hover {
+      transform: translateY(-2px);
+      border-color: rgba(126, 220, 255, 0.28);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .mapChoice.active {
+      border-color: rgba(126, 220, 255, 0.66);
+      background:
+        linear-gradient(180deg, rgba(126, 220, 255, 0.14), rgba(126, 220, 255, 0.05)),
+        rgba(7, 13, 20, 0.94);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 18px 36px rgba(8, 20, 34, 0.36);
+    }
+
+    .mapChoice[data-map-selection="random"]::before {
+      background:
+        linear-gradient(135deg, rgba(255, 196, 77, 0.18), transparent 46%),
+        linear-gradient(180deg, transparent, rgba(255, 196, 77, 0.04));
+    }
+
+    .mapChoiceHeader,
+    .mapChoiceMeta {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mapChoiceHeader {
+      display: grid;
+      gap: 6px;
+    }
+
+    .mapChoiceEyebrow {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .mapChoiceTitle {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 24px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f8fbff;
+    }
+
+    .mapChoiceDesc {
+      position: relative;
+      z-index: 1;
+      color: rgba(236, 244, 255, 0.78);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .mapChoiceMeta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .mapChoiceTag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
 
 	    .difficultyBtn {
 	      pointer-events: auto;
@@ -1462,7 +1616,7 @@
     .menuStats {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
       gap: 10px;
       margin: 18px 0 16px;
     }
@@ -1975,6 +2129,15 @@
         grid-template-columns: 1fr;
       }
 
+      .mapDeck {
+        grid-template-columns: 1fr;
+      }
+
+      .mapSelectHint {
+        max-width: none;
+        text-align: left;
+      }
+
       #controls {
         max-width: 70vw;
       }
@@ -2198,12 +2361,23 @@
                   <span>节奏</span>
                   <strong id="menuTempoStat">Crisp 1v1 gunfeel</strong>
                 </div>
+                <div class="menuStat">
+                  <span>地图</span>
+                  <strong id="menuMapStat">Classic</strong>
+                </div>
               </div>
 	            <div class="modeSelect">
 	              <button class="modeBtn" data-mode="duel">1v1 对决</button>
 	              <button class="modeBtn" data-mode="deathmatch">4人 乱斗</button>
 	            </div>
 	            <div class="rules" id="modeRules">五局三胜 · 1:45 时间限制 · 爆炸桶无差别伤害</div>
+	            <div class="difficultySelect" id="mapSelect">
+                <div class="mapSelectHead">
+	                <div class="difficultyLabel" id="mapLabel">地图预设</div>
+                  <div class="mapSelectHint" id="mapHint">选择一张图，或者交给系统随机轮换。</div>
+                </div>
+	              <div class="mapDeck" id="mapButtons"></div>
+	            </div>
 	            <div class="difficultySelect" id="difficultySelect">
 	              <div class="difficultyLabel" id="difficultyLabel">AI 难度</div>
 	              <div class="difficultyButtons">
@@ -2386,11 +2560,23 @@
         PVP_COMBAT_ARENA,
         PVP_COMBAT_COVER_LAYOUT,
         predictLocalPlayerState
+      },
+      {
+        PVP_DEFAULT_MAP_ID,
+        PVP_DEFAULT_MAP_SELECTION,
+        PVP_MAP_SELECTION_OPTIONS,
+        getPvpMapDefinition,
+        getPvpMapLabel,
+        normalizePvpMapSelection,
+        resolvePvpMapSelection
       }
     ] = await Promise.all([
       import(`./src/visual-tuning.js?v=${encodeURIComponent(ASSET_VERSION)}`),
-      import(`./src/pvp-combat-core.mjs?v=${encodeURIComponent(ASSET_VERSION)}`)
+      import(`./src/pvp-combat-core.mjs?v=${encodeURIComponent(ASSET_VERSION)}`),
+      import(`./src/pvp-map-catalog.mjs?v=${encodeURIComponent(ASSET_VERSION)}`)
     ]);
+
+    const DEFAULT_MAP_DEFINITION = getPvpMapDefinition(PVP_DEFAULT_MAP_ID);
 
     const BASE_ARENA = {
       width: 26,
@@ -2419,9 +2605,9 @@
         maxDpr: 2
       },
       arena: {
-        width: BASE_ARENA.width,
-        depth: BASE_ARENA.depth,
-        bounds: { ...BASE_ARENA.bounds }
+        width: DEFAULT_MAP_DEFINITION.arena.width,
+        depth: DEFAULT_MAP_DEFINITION.arena.depth,
+        bounds: { ...DEFAULT_MAP_DEFINITION.arena.bounds }
       },
       camera: {
         fov: 50,
@@ -2689,7 +2875,11 @@
     const menuModeStatEl = document.getElementById('menuModeStat');
     const menuDifficultyStatEl = document.getElementById('menuDifficultyStat');
     const menuTempoStatEl = document.getElementById('menuTempoStat');
+    const menuMapStatEl = document.getElementById('menuMapStat');
 		    const modeButtons = Array.from(document.querySelectorAll('.modeBtn'));
+	    const mapLabelEl = document.getElementById('mapLabel');
+    const mapHintEl = document.getElementById('mapHint');
+	    const mapButtonsWrap = document.getElementById('mapButtons');
 	    const difficultyLabelEl = document.getElementById('difficultyLabel');
 	    const difficultyButtons = Array.from(document.querySelectorAll('.difficultyBtn'));
 	    const nearMissFlash = document.getElementById('nearMissFlash');
@@ -2730,7 +2920,29 @@
       mouse: { x: 0, y: 0, down: false, justPressed: false, lastRawMoveAt: 0 }
     };
 
+    const MAP_SELECTION_STORAGE_KEY = 'tinyToonDuel_mapSelection';
     const MOBILE_WEAPON_ORDER = ['pistol', 'smg', 'shotgun'];
+    const MAP_SELECTION_UI = Object.freeze({
+      classic: Object.freeze({
+        eyebrow: 'Balanced Opener',
+        description: '熟悉的中路压制图。爆炸桶和中心重掩体让 1v1 节奏更稳，适合拉枪线与反打。',
+        tags: Object.freeze(['26×18', '中路重掩体', '稳健对枪']),
+        hint: 'Classic 适合先熟悉节奏，再拉高 AI 难度。'
+      }),
+      crossfire: Object.freeze({
+        eyebrow: 'Diagonal Pressure',
+        description: '更宽的外圈与斜向火线，鼓励绕侧、抢角和交叉补枪，整体更激进。',
+        tags: Object.freeze(['30×22', '双对角火线', '侧翼更强']),
+        hint: 'Crossfire 更适合打机动和绕后，不是简单换皮。'
+      }),
+      random: Object.freeze({
+        eyebrow: 'Wildcard Rotation',
+        description: '每局随机决定地图，适合开房轮换，减少单张图被背板后的套路感。',
+        tags: Object.freeze(['随机轮换', '开局决定', '连打更耐玩']),
+        hint: 'Random 会在开局时自动选图，适合连续开房。'
+      })
+    });
+    let mapButtons = [];
 
     const mobileState = {
       active: false,
@@ -2756,6 +2968,8 @@
 	      gameMode: 'duel',
 	      activeGameMode: null,
 	      activeDifficulty: null,
+      selectedMapSelection: PVP_DEFAULT_MAP_SELECTION,
+      activeMapId: PVP_DEFAULT_MAP_ID,
       showLeaderboard: false,
       timeLeft: CONFIG.match.totalTime,
       round: 1,
@@ -2782,6 +2996,7 @@
       active: false,
       matchId: null,
       mode: null,
+      mapId: null,
       role: 'player',
       isSpectator: false,
       team: null,
@@ -2953,6 +3168,14 @@
 	        }
 	      } catch {}
 	    }
+
+      state.selectedMapSelection = normalizePvpMapSelection(
+        localStorage.getItem(MAP_SELECTION_STORAGE_KEY),
+        PVP_DEFAULT_MAP_SELECTION
+      );
+      state.activeMapId = resolvePvpMapSelection(state.selectedMapSelection, {
+        preferredMapId: PVP_DEFAULT_MAP_ID
+      });
 
 	    init();
 
@@ -4333,10 +4556,20 @@
 	      world.arenaLayout = null;
 	    }
 
-    function buildArena() {
+    function buildArena(mapId = state.activeMapId || PVP_DEFAULT_MAP_ID) {
       const manifest = assets.manifest.assets.toonshooter;
+      const mapDefinition = getActiveMapDefinition(mapId);
+      const localMap = mapDefinition.local || {};
+      const arenaDefinition = mapDefinition.arena || DEFAULT_MAP_DEFINITION.arena;
+      const coverLayout = Array.isArray(localMap.coverLayout) ? localMap.coverLayout : [];
+      const decorativePlacements = Array.isArray(localMap.decorativePlacements) ? localMap.decorativePlacements : [];
+      const fallbackSizes = localMap.fallbackSizes || {};
+      const fenceConfig = localMap.fence || { key: 'Fence_Long', offset: 0.4, scale: 1.1 };
       const ground = new THREE.Mesh(
-        new THREE.PlaneGeometry(BASE_ARENA.ground.width * (CONFIG.arena.width / BASE_ARENA.width), BASE_ARENA.ground.depth * (CONFIG.arena.depth / BASE_ARENA.depth)),
+        new THREE.PlaneGeometry(
+          arenaDefinition.ground.width * (CONFIG.arena.width / arenaDefinition.width),
+          arenaDefinition.ground.depth * (CONFIG.arena.depth / arenaDefinition.depth)
+        ),
         new THREE.MeshStandardMaterial({ color: COLORS.dust, roughness: 0.9, metalness: 0.05 })
       );
       ground.rotation.x = -Math.PI / 2;
@@ -4344,253 +4577,158 @@
       world.scene.add(ground);
       world.arenaObjects.push(ground);
 
-	      const border = new THREE.LineSegments(
-	        new THREE.EdgesGeometry(new THREE.PlaneGeometry(CONFIG.arena.width, CONFIG.arena.depth)),
-	        new THREE.LineBasicMaterial({ color: COLORS.dustDark })
-	      );
-	      border.rotation.x = -Math.PI / 2;
-	      border.position.y = 0.02;
-	      world.scene.add(border);
-	      world.arenaObjects.push(border);
-	      world.arenaDecor = [];
+      const border = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.PlaneGeometry(CONFIG.arena.width, CONFIG.arena.depth)),
+        new THREE.LineBasicMaterial({ color: COLORS.dustDark })
+      );
+      border.rotation.x = -Math.PI / 2;
+      border.position.y = 0.02;
+      world.scene.add(border);
+      world.arenaObjects.push(border);
+      world.arenaDecor = [];
 
-      // Main cover placements - collide-able obstacles
-      const placements = [
-        // Center major occluder - Tank (permanent cover)
-        { key: 'Tank', pos: [0, 0, -0.6], rot: Math.PI * 0.6, collide: true },
-
-        // Safe spawn cover (permanent)
-        { key: 'Barrier_Large', pos: [-11.2, 0, -4.2], rot: Math.PI / 2, collide: true },
-        { key: 'Barrier_Large', pos: [-11.2, 0, 4.2], rot: Math.PI / 2, collide: true },
-        { key: 'Barrier_Large', pos: [11.2, 0, -4.2], rot: -Math.PI / 2, collide: true },
-        { key: 'Barrier_Large', pos: [11.2, 0, 4.2], rot: -Math.PI / 2, collide: true },
-
-        // Permanent lane anchors
-        { key: 'SackTrench', pos: [-7.4, 0, 0.8], rot: 0, collide: true },
-        { key: 'SackTrench', pos: [7.4, 0, -0.8], rot: Math.PI, collide: true },
-        { key: 'Container_Small', pos: [-10.2, 0, -7.2], rot: 0.1, collide: true },
-        { key: 'Container_Small', pos: [10.2, 0, 7.2], rot: -Math.PI + 0.1, collide: true },
-        { key: 'Structure_1', pos: [-10.3, 0, 7.1], rot: 0, collide: true },
-        { key: 'Structure_1', pos: [10.3, 0, -7.1], rot: Math.PI, collide: true },
-
-        // Mid-map destructible cover (opens up over the match)
-        { key: 'Crate', pos: [-3.2, 0, 0], rot: 0.2, collide: true },
-        { key: 'Crate', pos: [3.2, 0, 0], rot: -0.2, collide: true },
-        { key: 'Crate', pos: [0, 0, 5.1], rot: 0.5, collide: true },
-        { key: 'Crate', pos: [0, 0, -5.1], rot: -0.4, collide: true },
-        { key: 'Pallet', pos: [-6.2, 0, -1.6], rot: 0.15, collide: true },
-        { key: 'Pallet', pos: [6.2, 0, 1.6], rot: -0.15, collide: true },
-        { key: 'Sofa', pos: [-8.3, 0, 5.9], rot: Math.PI / 4, collide: true },
-        { key: 'Sofa', pos: [8.3, 0, -5.9], rot: -Math.PI / 4, collide: true },
-        { key: 'CardboardBoxes_2', pos: [-2.2, 0, -6.6], rot: 0.2, collide: true },
-        { key: 'CardboardBoxes_3', pos: [2.2, 0, 6.6], rot: -0.2, collide: true }
-      ];
-
-      // Decorative props - non-colliding clutter for visual density
-      const decorativePlacements = [
-        // Cardboard boxes clusters scattered around
-        { key: 'CardboardBoxes_1', pos: [-11, 0, 5], rot: 0.3 },
-        { key: 'CardboardBoxes_2', pos: [11, 0, -5], rot: -0.4 },
-        { key: 'CardboardBoxes_3', pos: [-2, 0, -7], rot: 0.1 },
-        { key: 'CardboardBoxes_4', pos: [2, 0, 7], rot: -0.2 },
-        { key: 'CardboardBoxes_1', pos: [5, 0, -6], rot: 0.6 },
-        { key: 'CardboardBoxes_2', pos: [-5, 0, 6], rot: -0.5 },
-        // Tires scattered
-        { key: 'Debris_Tires', pos: [4, 0, -3], rot: 0 },
-        { key: 'Debris_Tires', pos: [-4, 0, -5], rot: Math.PI / 3 },
-        { key: 'Debris_Tires', pos: [8, 0, 2], rot: 0.8 },
-        // Traffic cones marking areas
-        { key: 'TrafficCone', pos: [-2, 0, -2], rot: 0 },
-        { key: 'TrafficCone', pos: [2, 0, 2], rot: 0 },
-        { key: 'TrafficCone', pos: [-9, 0, 0], rot: 0.2 },
-        { key: 'TrafficCone', pos: [9, 0, 0], rot: -0.1 },
-        { key: 'TrafficCone', pos: [0, 0, -8], rot: 0.3 },
-        { key: 'TrafficCone', pos: [0, 0, 8], rot: -0.2 },
-        // Debris piles
-        { key: 'Debris_Pile', pos: [-10, 0, 2], rot: 0.5 },
-        { key: 'Debris_Pile', pos: [10, 0, -2], rot: -0.3 },
-        { key: 'Debris_Pile', pos: [3, 0, -4], rot: 0.7 },
-        // Paper debris scattered
-        { key: 'Debris_Papers_1', pos: [-1, 0, -3], rot: 0.8 },
-        { key: 'Debris_Papers_2', pos: [1, 0, 3], rot: -0.6 },
-        { key: 'Debris_Papers_3', pos: [-6, 0, -2], rot: 0.4 },
-        // Gas cans
-        { key: 'GasCan', pos: [-7, 0, -4], rot: 0.2 },
-        { key: 'GasCan', pos: [7, 0, 4], rot: -0.3 },
-        // Wood planks
-        { key: 'WoodPlanks', pos: [-3, 0, 4], rot: 0.6 },
-        { key: 'WoodPlanks', pos: [3, 0, -4], rot: -0.5 },
-        // Broken pallets
-        { key: 'Pallet_Broken', pos: [9, 0, -4], rot: 0.3 },
-        { key: 'Pallet_Broken', pos: [-9, 0, 4], rot: -0.4 },
-        // Pipes near edges
-        { key: 'Pipes', pos: [-12, 0, 0], rot: Math.PI / 2 },
-        { key: 'Pipes', pos: [12, 0, 0], rot: -Math.PI / 2 },
-        // Trash containers at edges
-        { key: 'TrashContainer', pos: [-12, 0, -6], rot: 0.1 },
-        { key: 'TrashContainer_Open', pos: [12, 0, 6], rot: -0.1 },
-        // Street lights for atmosphere
-        { key: 'StreetLight', pos: [-12, 0, 4], rot: 0 },
-        { key: 'StreetLight', pos: [12, 0, -4], rot: Math.PI },
-        // Signs
-        { key: 'Sign', pos: [-11, 0, 7], rot: -0.2 },
-        { key: 'Sign', pos: [11, 0, -7], rot: 0.3 }
-      ];
-
-      const fallbackSizes = {
-        Tank: [4.5, 2.5, 3.0],
-        Debris_BrokenCar: [3.5, 1.5, 2.0],
-        Container_Small: [4.2, 2.0, 2.2],
-        Barrier_Large: [3.6, 1.2, 1.2],
-        Crate: [1.2, 1.2, 1.2],
-        SackTrench: [2.4, 0.8, 1.2],
-        Sofa: [2.0, 1.0, 1.0],
-        Structure_1: [2.5, 2.0, 2.5],
-        Pallet: [1.4, 0.2, 1.4],
-        CardboardBoxes_1: [1.1, 0.8, 1.1],
-        CardboardBoxes_2: [1.1, 0.8, 1.1],
-        CardboardBoxes_3: [1.1, 0.8, 1.1],
-        CardboardBoxes_4: [1.1, 0.8, 1.1]
-      };
-
-      // Place colliding cover
-	      placements.forEach((item) => {
-	        const path = manifest.environment[item.key];
-	        const clone = cloneAsset(path);
-	        const isFallback = !clone;
-	        const activeVisual = isFallback ? 'placeholder' : 'gltf';
-	        const visuals = { gltf: null, placeholder: null };
-	        const fbSize = fallbackSizes[item.key] || [2, 1.5, 2];
-	        const root = isFallback
-	          ? new THREE.Mesh(
-	            new THREE.BoxGeometry(...fbSize),
-	            new THREE.MeshStandardMaterial({ color: COLORS.steel, roughness: 0.7, metalness: 0.1 })
-	          )
-	          : normalizeToHeight(clone.root, null);
-	        if (isFallback) root.position.y = fbSize[1] / 2;
-	        visuals[activeVisual] = isFallback ? markPlaceholder(root) : root;
-	        root.position.set(item.pos[0], root.position.y, item.pos[2]);
-	        root.rotation.y = item.rot;
-	        root.traverse?.((child) => {
-	          if (child.isMesh) {
-	            child.castShadow = true;
+      coverLayout.forEach((item) => {
+        const path = manifest.environment[item.key];
+        const clone = path ? cloneAsset(path) : null;
+        const isFallback = !clone;
+        const activeVisual = isFallback ? 'placeholder' : 'gltf';
+        const visuals = { gltf: null, placeholder: null };
+        const fallbackSize = fallbackSizes[item.key] || [
+          Math.max(0.9, Number(item.sizeX) || 1.2),
+          item.key === 'Pallet' ? 0.2 : item.key.includes('Boxes') ? 0.8 : 1.2,
+          Math.max(0.9, Number(item.sizeZ) || 1.2)
+        ];
+        const root = isFallback
+          ? new THREE.Mesh(
+              new THREE.BoxGeometry(...fallbackSize),
+              new THREE.MeshStandardMaterial({ color: COLORS.steel, roughness: 0.7, metalness: 0.1 })
+            )
+          : normalizeToHeight(clone.root, null);
+        if (isFallback) root.position.y = fallbackSize[1] / 2;
+        visuals[activeVisual] = isFallback ? markPlaceholder(root) : root;
+        root.position.set(Number(item.x) || 0, root.position.y, Number(item.z) || 0);
+        root.rotation.y = Number(item.rot) || 0;
+        root.traverse?.((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
             child.receiveShadow = true;
           }
         });
         world.scene.add(root);
         world.arenaObjects.push(root);
 
-	        if (item.collide !== false) {
-	          const box = computeMeshBounds(root);
-	          const inset = 0.08;
-		          const typeCfg = CONFIG.cover.types[item.key] || null;
-		          const cover = {
-	            key: item.key,
-	            assetPath: path,
-	            mesh: root,
-	            visuals,
-	            activeVisual,
-	            spawnPos: root.position.clone(),
-	            spawnRotY: root.rotation.y,
-		            minX: box.min.x + inset,
-		            maxX: box.max.x - inset,
-		            minZ: box.min.z + inset,
-	            maxZ: box.max.z - inset,
-	            minY: box.min.y,
-	            maxY: box.max.y,
-	            blocksLoS: true,
-	            active: true,
-	            destructible: Boolean(typeCfg),
-            hp: typeCfg ? typeCfg.hp : null,
-            maxHp: typeCfg ? typeCfg.hp : null,
-            kickable: Boolean(typeCfg),
-            flashTimer: 0,
-            originalMaterials: null,
-            colliderOffsets: null,
-            kickState: null
-          };
-          cacheCoverColliderOffsets(cover);
-          world.cover.push(cover);
-        }
+        const box = computeMeshBounds(root);
+        const inset = 0.08;
+        const typeCfg = CONFIG.cover.types[item.key] || null;
+        const cover = {
+          key: item.key,
+          assetPath: path,
+          mesh: root,
+          visuals,
+          activeVisual,
+          spawnPos: root.position.clone(),
+          spawnRotY: root.rotation.y,
+          minX: box.min.x + inset,
+          maxX: box.max.x - inset,
+          minZ: box.min.z + inset,
+          maxZ: box.max.z - inset,
+          minY: box.min.y,
+          maxY: box.max.y,
+          blocksLoS: true,
+          active: true,
+          destructible: Boolean(typeCfg),
+          hp: typeCfg ? typeCfg.hp : null,
+          maxHp: typeCfg ? typeCfg.hp : null,
+          kickable: Boolean(typeCfg),
+          flashTimer: 0,
+          originalMaterials: null,
+          colliderOffsets: null,
+          kickState: null
+        };
+        cacheCoverColliderOffsets(cover);
+        world.cover.push(cover);
       });
 
-	      // Place decorative (non-colliding) props
-	      decorativePlacements.forEach((item) => {
-	        const path = manifest.environment[item.key];
-	        if (!path) return; // Skip if asset doesn't exist
-	        const clone = cloneAsset(path);
-	        const activeVisual = clone ? 'gltf' : 'placeholder';
-	        const visuals = { gltf: null, placeholder: null };
-	        const root = clone
-	          ? normalizeToHeight(clone.root, null)
-	          : markPlaceholder(
-	            new THREE.Mesh(
-	              new THREE.BoxGeometry(0.9, 0.6, 0.9),
-	              new THREE.MeshStandardMaterial({ color: COLORS.dustDark, roughness: 0.85, metalness: 0.05 })
-	            )
-	          );
-	        visuals[activeVisual] = root;
-	        root.position.set(item.pos[0], root.position.y, item.pos[2]);
-	        root.rotation.y = item.rot;
-	        root.traverse?.((child) => {
-	          if (child.isMesh) {
-	            child.castShadow = true;
-	            child.receiveShadow = true;
-	          }
-	        });
-	        world.scene.add(root);
-	        world.arenaObjects.push(root);
-	        world.arenaDecor.push({ kind: 'prop', key: item.key, assetPath: path, mesh: root, visuals, activeVisual });
-	      });
+      decorativePlacements.forEach((item) => {
+        const path = manifest.environment[item.key];
+        if (!path) return;
+        const clone = cloneAsset(path);
+        const activeVisual = clone ? 'gltf' : 'placeholder';
+        const visuals = { gltf: null, placeholder: null };
+        const root = clone
+          ? normalizeToHeight(clone.root, null)
+          : markPlaceholder(
+              new THREE.Mesh(
+                new THREE.BoxGeometry(0.9, 0.6, 0.9),
+                new THREE.MeshStandardMaterial({ color: COLORS.dustDark, roughness: 0.85, metalness: 0.05 })
+              )
+            );
+        visuals[activeVisual] = root;
+        root.position.set(Number(item.pos?.[0]) || 0, root.position.y, Number(item.pos?.[2]) || 0);
+        root.rotation.y = Number(item.rot) || 0;
+        root.traverse?.((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+        world.scene.add(root);
+        world.arenaObjects.push(root);
+        world.arenaDecor.push({ kind: 'prop', key: item.key, assetPath: path, mesh: root, visuals, activeVisual });
+      });
 
-	      const fencePath = manifest.environment.Fence_Long;
-	      const fenceClone = cloneAsset(fencePath);
-	      const fenceSegments = [
-	        { pos: [0, 0, CONFIG.arena.bounds.minZ - 0.4], rot: 0, len: CONFIG.arena.width + 0.8 },
-	        { pos: [0, 0, CONFIG.arena.bounds.maxZ + 0.4], rot: Math.PI, len: CONFIG.arena.width + 0.8 },
-	        { pos: [CONFIG.arena.bounds.minX - 0.4, 0, 0], rot: Math.PI / 2, len: CONFIG.arena.depth + 0.8 },
-	        { pos: [CONFIG.arena.bounds.maxX + 0.4, 0, 0], rot: -Math.PI / 2, len: CONFIG.arena.depth + 0.8 }
-	      ];
-	      const fenceModel = fenceClone ? normalizeToHeight(fenceClone.root, null) : null;
-	      fenceSegments.forEach((seg) => {
-	        const cloneFence = fenceModel ? fenceModel.clone(true) : null;
-	        const activeVisual = cloneFence ? 'gltf' : 'placeholder';
-	        const visuals = { gltf: null, placeholder: null };
-	        const fence = cloneFence
-	          ? cloneFence
-	          : markPlaceholder(
-	            new THREE.Mesh(
-	              new THREE.BoxGeometry(seg.len, 1.1, 0.18),
-	              new THREE.MeshStandardMaterial({ color: COLORS.steel, roughness: 0.8, metalness: 0.05 })
-	            )
-	          );
-	        visuals[activeVisual] = fence;
-	        if (cloneFence) {
-	          fence.position.set(seg.pos[0], 0, seg.pos[2]);
-	        } else {
-	          fence.position.set(seg.pos[0], 0.55, seg.pos[2]);
-	        }
-	        fence.rotation.y = seg.rot;
-	        fence.scale.setScalar(1.1);
-	        world.scene.add(fence);
-	        world.arenaObjects.push(fence);
-	        world.arenaDecor.push({
-	          kind: 'fence',
-	          key: 'Fence_Long',
-	          assetPath: fencePath,
-	          mesh: fence,
-	          visuals,
-	          activeVisual,
-	          placeholderLength: seg.len
-	        });
-	      });
+      const fencePath = manifest.environment[fenceConfig.key || 'Fence_Long'];
+      const fenceClone = fencePath ? cloneAsset(fencePath) : null;
+      const fenceOffset = Number(fenceConfig.offset) || 0.4;
+      const fenceSegments = [
+        { pos: [0, 0, CONFIG.arena.bounds.minZ - fenceOffset], rot: 0, len: CONFIG.arena.width + fenceOffset * 2 },
+        { pos: [0, 0, CONFIG.arena.bounds.maxZ + fenceOffset], rot: Math.PI, len: CONFIG.arena.width + fenceOffset * 2 },
+        { pos: [CONFIG.arena.bounds.minX - fenceOffset, 0, 0], rot: Math.PI / 2, len: CONFIG.arena.depth + fenceOffset * 2 },
+        { pos: [CONFIG.arena.bounds.maxX + fenceOffset, 0, 0], rot: -Math.PI / 2, len: CONFIG.arena.depth + fenceOffset * 2 }
+      ];
+      const fenceModel = fenceClone ? normalizeToHeight(fenceClone.root, null) : null;
+      fenceSegments.forEach((segment) => {
+        const fence = fenceModel
+          ? fenceModel.clone(true)
+          : markPlaceholder(
+              new THREE.Mesh(
+                new THREE.BoxGeometry(segment.len, 1.1, 0.18),
+                new THREE.MeshStandardMaterial({ color: COLORS.steel, roughness: 0.8, metalness: 0.05 })
+              )
+            );
+        const activeVisual = fenceModel ? 'gltf' : 'placeholder';
+        const visuals = { gltf: null, placeholder: null };
+        visuals[activeVisual] = fence;
+        if (fenceModel) {
+          fence.position.set(segment.pos[0], 0, segment.pos[2]);
+        } else {
+          fence.position.set(segment.pos[0], 0.55, segment.pos[2]);
+        }
+        fence.rotation.y = segment.rot;
+        fence.scale.setScalar(Number(fenceConfig.scale) || 1.1);
+        world.scene.add(fence);
+        world.arenaObjects.push(fence);
+        world.arenaDecor.push({
+          kind: 'fence',
+          key: fenceConfig.key || 'Fence_Long',
+          assetPath: fencePath,
+          mesh: fence,
+          visuals,
+          activeVisual,
+          placeholderLength: segment.len
+        });
+      });
 
-	      world.arenaLayout = { decorativePlacements, fallbackSizes, fenceSegments };
+      world.arenaLayout = {
+        mapId: mapDefinition.id,
+        decorativePlacements,
+        fallbackSizes,
+        fenceSegments
+      };
 
-	      spawnBarrels();
-
-	      buildCoverNodes();
-	    }
+      spawnBarrels(mapDefinition.id);
+      buildCoverNodes(mapDefinition.id);
+    }
 
     function cacheCoverColliderOffsets(cover) {
       if (!cover.mesh) return;
@@ -4621,42 +4759,43 @@
       }
     }
 
-    function spawnBarrels() {
+    function spawnBarrels(mapId = state.activeMapId || PVP_DEFAULT_MAP_ID) {
       const manifest = assets.manifest.assets.toonshooter;
       const barrelPath = manifest.environment.ExplodingBarrel;
-      const barrelClone = cloneAsset(barrelPath);
-      const barrelPositions = [
-        new THREE.Vector3(-8.2, 0, -6.5),
-        new THREE.Vector3(8.2, 0, 6.5),
-        new THREE.Vector3(0, 0, 7.0)
-      ];
+      const barrelClone = barrelPath ? cloneAsset(barrelPath) : null;
+      const barrelPositions = getActiveMapDefinition(mapId).local?.barrelPositions || [];
 
-	      barrelPositions.forEach((pos) => {
-	        const barrelRoot = barrelClone ? normalizeToHeight(barrelClone.root.clone(true), null) : null;
-	        const fallback = new THREE.Mesh(
-	          new THREE.CylinderGeometry(0.45, 0.45, 1.2, 12),
-	          new THREE.MeshStandardMaterial({ color: COLORS.warning, roughness: 0.4, metalness: 0.2 })
-	        );
-	        const mesh = barrelRoot || fallback;
-	        const activeVisual = barrelRoot ? 'gltf' : 'placeholder';
-	        const visuals = { gltf: null, placeholder: null };
-	        mesh.position.copy(pos);
-	        if (!barrelRoot) mesh.position.y = 0.6;
-	        if (!barrelRoot) markPlaceholder(mesh);
-	        visuals[activeVisual] = mesh;
-	        mesh.castShadow = true;
-	        mesh.receiveShadow = true;
-	        world.scene.add(mesh);
-	        world.barrels.push({
-	          assetPath: barrelPath,
-	          mesh,
-	          position: mesh.position,
-	          visuals,
-	          activeVisual,
-	          spawnPos: pos.clone(),
-	          velocity: new THREE.Vector3(),
-	          hp: CONFIG.barrel.hp,
-	          alive: true,
+      barrelPositions.forEach((position) => {
+        const spawnPosition = new THREE.Vector3(
+          Number(position?.x) || 0,
+          Number(position?.y) || 0,
+          Number(position?.z) || 0
+        );
+        const barrelRoot = barrelClone ? normalizeToHeight(barrelClone.root.clone(true), null) : null;
+        const fallback = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.45, 0.45, 1.2, 12),
+          new THREE.MeshStandardMaterial({ color: COLORS.warning, roughness: 0.4, metalness: 0.2 })
+        );
+        const mesh = barrelRoot || fallback;
+        const activeVisual = barrelRoot ? 'gltf' : 'placeholder';
+        const visuals = { gltf: null, placeholder: null };
+        mesh.position.copy(spawnPosition);
+        if (!barrelRoot) mesh.position.y = 0.6;
+        if (!barrelRoot) markPlaceholder(mesh);
+        visuals[activeVisual] = mesh;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        world.scene.add(mesh);
+        world.barrels.push({
+          assetPath: barrelPath,
+          mesh,
+          position: mesh.position,
+          visuals,
+          activeVisual,
+          spawnPos: spawnPosition.clone(),
+          velocity: new THREE.Vector3(),
+          hp: CONFIG.barrel.hp,
+          alive: true,
           radius: CONFIG.barrel.radius,
           isRolling: false,
           rollTimer: 0
@@ -4664,7 +4803,7 @@
       });
     }
 
-    function buildCoverNodes() {
+    function buildCoverNodes(mapId = state.activeMapId || PVP_DEFAULT_MAP_ID) {
       world.nodes = [];
       const offset = 1.1;
       world.cover.forEach((box) => {
@@ -4679,10 +4818,10 @@
         addNode(cx, cz - hz);
       });
 
-      addNode(-8, 0);
-      addNode(8, 0);
-      addNode(0, -7);
-      addNode(0, 7);
+      const navSeedPoints = getActiveMapDefinition(mapId).local?.navSeedPoints || [];
+      navSeedPoints.forEach((point) => {
+        addNode(Number(point?.x) || 0, Number(point?.z) || 0);
+      });
 
       function addNode(x, z) {
         if (x < CONFIG.arena.bounds.minX + 1 || x > CONFIG.arena.bounds.maxX - 1) return;
@@ -4751,8 +4890,11 @@
       world.mixers = [];
     }
 
-    function getSpawnPoints(count) {
-      return SPAWN_POINTS.slice(0, count).map((point) => point.clone());
+    function getSpawnPoints(count, mapId = state.activeMapId || PVP_DEFAULT_MAP_ID) {
+      const spawnPoints = getActiveMapDefinition(mapId).local?.spawnPoints || [];
+      return spawnPoints
+        .slice(0, count)
+        .map((point) => new THREE.Vector3(Number(point?.x) || 0, Number(point?.y) || 0, Number(point?.z) || 0));
     }
 
 	    function createCharacter({ id, path, guns, team, color, spawn }) {
@@ -5039,15 +5181,87 @@
       bestTimeEnd.textContent = bestText;
     }
 
+    function getSelectedMapSelection() {
+      return normalizePvpMapSelection(state.selectedMapSelection, PVP_DEFAULT_MAP_SELECTION);
+    }
+
+    function resolveCurrentMapId(options = {}) {
+      return resolvePvpMapSelection(getSelectedMapSelection(), {
+        preferredMapId: options.preserveActive === false ? null : state.activeMapId,
+        seed: options.seed || `${state.gameMode}:${state.activeGameMode || 'menu'}:${getSelectedMapSelection()}`
+      });
+    }
+
+    function getActiveMapDefinition(mapId = state.activeMapId || resolveCurrentMapId()) {
+      return getPvpMapDefinition(mapId || PVP_DEFAULT_MAP_ID);
+    }
+
+    function getMapSelectionPresentation(selectionId) {
+      return MAP_SELECTION_UI[selectionId] || {
+        eyebrow: 'Arena Profile',
+        description: '选择不同地图会直接改变出生点、掩体布局和推进路线。',
+        tags: ['地图轮换'],
+        hint: '切图会同步刷新当前练习场布局。'
+      };
+    }
+
 	    function setupMenuModes() {
 	      modeButtons.forEach((button) => {
 	        button.addEventListener('click', () => {
 	          setGameMode(button.dataset.mode);
 	        });
 	      });
+        setupMenuMapSelection();
 	      setupDifficultySelect();
 	      setGameMode(state.gameMode);
 	    }
+
+    function setupMenuMapSelection() {
+      if (!mapButtonsWrap) return;
+      mapButtonsWrap.replaceChildren(
+        ...PVP_MAP_SELECTION_OPTIONS.map((option) => {
+          const button = document.createElement('button');
+          const presentation = getMapSelectionPresentation(option.id);
+          button.className = 'mapChoice';
+          button.type = 'button';
+          button.dataset.mapSelection = option.id;
+          button.setAttribute('aria-pressed', 'false');
+
+          const header = document.createElement('div');
+          header.className = 'mapChoiceHeader';
+
+          const eyebrow = document.createElement('span');
+          eyebrow.className = 'mapChoiceEyebrow';
+          eyebrow.textContent = presentation.eyebrow;
+
+          const title = document.createElement('strong');
+          title.className = 'mapChoiceTitle';
+          title.textContent = option.label;
+
+          const desc = document.createElement('div');
+          desc.className = 'mapChoiceDesc';
+          desc.textContent = presentation.description;
+
+          const meta = document.createElement('div');
+          meta.className = 'mapChoiceMeta';
+          presentation.tags.forEach((tagText) => {
+            const tag = document.createElement('span');
+            tag.className = 'mapChoiceTag';
+            tag.textContent = tagText;
+            meta.appendChild(tag);
+          });
+
+          header.append(eyebrow, title);
+          button.append(header, desc, meta);
+          button.addEventListener('click', () => {
+            setMapSelection(option.id);
+          });
+          return button;
+        })
+      );
+      mapButtons = Array.from(mapButtonsWrap.querySelectorAll('[data-map-selection]'));
+      updateMapSelectionUI();
+    }
 
 	    function setupDifficultySelect() {
 	      if (!difficultyButtons.length) return;
@@ -5111,6 +5325,24 @@
 	      updateDifficultyUI();
 	    }
 
+    function updateMapSelectionUI() {
+      const currentSelection = getSelectedMapSelection();
+      const presentation = getMapSelectionPresentation(currentSelection);
+      mapButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.mapSelection === currentSelection);
+        button.setAttribute('aria-pressed', button.dataset.mapSelection === currentSelection ? 'true' : 'false');
+      });
+      if (mapLabelEl) {
+        mapLabelEl.textContent = `地图预设 · ${getPvpMapLabel(currentSelection)}`;
+      }
+      if (mapHintEl) {
+        mapHintEl.textContent = presentation.hint;
+      }
+      if (menuMapStatEl) {
+        menuMapStatEl.textContent = getPvpMapLabel(currentSelection);
+      }
+    }
+
 	    function updateDifficultyUI() {
 	      const current = getDifficultyForMode(state.gameMode);
 	      difficultyButtons.forEach((button) => {
@@ -5134,19 +5366,39 @@
 	      });
 	      updateMenuModeCopy();
 	      updateDifficultyUI();
+        updateMapSelectionUI();
         syncHudVisualState();
 	    }
+
+    function setMapSelection(mapSelection, options = {}) {
+      const normalizedSelection = normalizePvpMapSelection(mapSelection, PVP_DEFAULT_MAP_SELECTION);
+      const changed = state.selectedMapSelection !== normalizedSelection;
+      state.selectedMapSelection = normalizedSelection;
+      localStorage.setItem(MAP_SELECTION_STORAGE_KEY, normalizedSelection);
+      updateMapSelectionUI();
+      updateMenuModeCopy();
+      if (changed && options.rebuild !== false && !livePvp.active) {
+        applyGameMode(state.gameMode, {
+          mapId: resolveCurrentMapId({
+            preserveActive: false,
+            seed: `${normalizedSelection}:${Date.now()}`
+          })
+        });
+      }
+    }
 
     function updateMenuModeCopy() {
       if (!modeSubtitleEl || !modeRulesEl) return;
       const currentDifficulty = getDifficultyForMode(state.gameMode);
       const difficultyLabel = getDifficultyLabel(currentDifficulty);
+      const mapLabel = getPvpMapLabel(getSelectedMapSelection());
       const menuProfile = getMenuVisualProfile(state.gameMode);
       const effectiveMode = getEffectiveGameMode(state.gameMode);
       if (menuEyebrowEl) menuEyebrowEl.textContent = menuProfile.eyebrow;
       if (menuChipEl) menuChipEl.textContent = menuProfile.badge;
       if (menuModeStatEl) menuModeStatEl.textContent = effectiveMode?.name || state.gameMode;
       if (menuTempoStatEl) menuTempoStatEl.textContent = menuProfile.tempo;
+      if (menuMapStatEl) menuMapStatEl.textContent = mapLabel;
       if (menuEyebrowEl) menuEyebrowEl.style.color = menuProfile.accent;
       if (menuChipEl) menuChipEl.style.color = menuProfile.support;
       if (state.gameMode === 'deathmatch') {
@@ -5169,28 +5421,31 @@
       return getEffectiveGameMode(state.activeGameMode || state.gameMode);
     }
 
-    function applyGameMode(modeId) {
+    function applyGameMode(modeId, options = {}) {
       const resolvedModeId = CONFIG.gameModes[modeId] ? modeId : 'duel';
       const mode = getEffectiveGameMode(resolvedModeId);
+      const mapDefinition = getActiveMapDefinition(options.mapId || resolveCurrentMapId());
+      const arenaDefinition = mapDefinition.arena || DEFAULT_MAP_DEFINITION.arena;
       state.activeGameMode = resolvedModeId;
       state.activeDifficulty = getDifficultyForMode(resolvedModeId);
+      state.activeMapId = mapDefinition.id || PVP_DEFAULT_MAP_ID;
       hud.dataset.gamemode = resolvedModeId;
       syncHudVisualState();
 
       const scale = mode.arenaScale ?? 1;
-      CONFIG.arena.width = BASE_ARENA.width * scale;
-      CONFIG.arena.depth = BASE_ARENA.depth * scale;
+      CONFIG.arena.width = arenaDefinition.width * scale;
+      CONFIG.arena.depth = arenaDefinition.depth * scale;
       CONFIG.arena.bounds = {
-        minX: BASE_ARENA.bounds.minX * scale,
-        maxX: BASE_ARENA.bounds.maxX * scale,
-        minZ: BASE_ARENA.bounds.minZ * scale,
-        maxZ: BASE_ARENA.bounds.maxZ * scale
+        minX: arenaDefinition.bounds.minX * scale,
+        maxX: arenaDefinition.bounds.maxX * scale,
+        minZ: arenaDefinition.bounds.minZ * scale,
+        maxZ: arenaDefinition.bounds.maxZ * scale
       };
 
       clearArena();
       clearEntities();
       clearPickups();
-      buildArena();
+      buildArena(state.activeMapId);
       spawnEntities();
       setupHUD();
     }
@@ -5317,14 +5572,22 @@
       }
     }
 
-    function buildPvpArena() {
+    function buildPvpArena(mapId = livePvp.mapId || state.activeMapId || PVP_DEFAULT_MAP_ID) {
       const manifest = assets.manifest?.assets?.toonshooter;
-      CONFIG.arena.width = PVP_COMBAT_ARENA.width;
-      CONFIG.arena.depth = PVP_COMBAT_ARENA.depth;
-      CONFIG.arena.bounds = { ...PVP_COMBAT_ARENA.bounds };
+      const mapDefinition = getActiveMapDefinition(mapId);
+      const combatMap = mapDefinition.combat || {};
+      const arenaDefinition = combatMap.arena || mapDefinition.arena;
+      const groundDefinition = mapDefinition.arena?.ground || DEFAULT_MAP_DEFINITION.arena.ground;
+      const coverLayout = Array.isArray(combatMap.coverLayout) ? combatMap.coverLayout : [];
+      const fallbackSizes = combatMap.fallbackSizes || {};
+      const fenceConfig = mapDefinition.local?.fence || { key: 'Fence_Long', offset: 0.4, scale: 1.1 };
+
+      CONFIG.arena.width = arenaDefinition.width;
+      CONFIG.arena.depth = arenaDefinition.depth;
+      CONFIG.arena.bounds = { ...arenaDefinition.bounds };
 
       const ground = new THREE.Mesh(
-        new THREE.PlaneGeometry(BASE_ARENA.ground.width, BASE_ARENA.ground.depth),
+        new THREE.PlaneGeometry(groundDefinition.width, groundDefinition.depth),
         new THREE.MeshStandardMaterial({ color: COLORS.dust, roughness: 0.9, metalness: 0.05 })
       );
       ground.rotation.x = -Math.PI / 2;
@@ -5346,12 +5609,12 @@
       world.nodes = [];
       world.arenaDecor = [];
 
-      PVP_COMBAT_COVER_LAYOUT.forEach((item) => {
+      coverLayout.forEach((item) => {
         const path = manifest?.environment?.[item.key];
         const clone = path ? cloneAsset(path) : null;
         const activeVisual = clone ? 'gltf' : 'placeholder';
         const visuals = { gltf: null, placeholder: null };
-        const fallbackSize = LIVE_PVP_ARENA_FALLBACK_SIZES[item.key] || [
+        const fallbackSize = fallbackSizes[item.key] || [
           Math.max(0.9, Number(item.sizeX) || 1.2),
           item.key === 'Pallet' ? 0.2 : item.key.includes('Boxes') ? 0.8 : 1.2,
           Math.max(0.9, Number(item.sizeZ) || 1.2)
@@ -5368,8 +5631,8 @@
         if (!clone) {
           root.position.y = fallbackSize[1] / 2;
         }
-        root.position.set(item.x, root.position.y, item.z);
-        root.rotation.y = item.rot;
+        root.position.set(Number(item.x) || 0, root.position.y, Number(item.z) || 0);
+        root.rotation.y = Number(item.rot) || 0;
         root.traverse?.((child) => {
           if (child.isMesh) {
             child.castShadow = true;
@@ -5410,13 +5673,14 @@
         world.cover.push(cover);
       });
 
-      const fencePath = manifest?.environment?.Fence_Long;
+      const fencePath = manifest?.environment?.[fenceConfig.key || 'Fence_Long'];
       const fenceClone = fencePath ? cloneAsset(fencePath) : null;
+      const fenceOffset = Number(fenceConfig.offset) || 0.4;
       const fenceSegments = [
-        { pos: [0, 0, CONFIG.arena.bounds.minZ - 0.4], rot: 0, len: CONFIG.arena.width + 0.8 },
-        { pos: [0, 0, CONFIG.arena.bounds.maxZ + 0.4], rot: Math.PI, len: CONFIG.arena.width + 0.8 },
-        { pos: [CONFIG.arena.bounds.minX - 0.4, 0, 0], rot: Math.PI / 2, len: CONFIG.arena.depth + 0.8 },
-        { pos: [CONFIG.arena.bounds.maxX + 0.4, 0, 0], rot: -Math.PI / 2, len: CONFIG.arena.depth + 0.8 }
+        { pos: [0, 0, CONFIG.arena.bounds.minZ - fenceOffset], rot: 0, len: CONFIG.arena.width + fenceOffset * 2 },
+        { pos: [0, 0, CONFIG.arena.bounds.maxZ + fenceOffset], rot: Math.PI, len: CONFIG.arena.width + fenceOffset * 2 },
+        { pos: [CONFIG.arena.bounds.minX - fenceOffset, 0, 0], rot: Math.PI / 2, len: CONFIG.arena.depth + fenceOffset * 2 },
+        { pos: [CONFIG.arena.bounds.maxX + fenceOffset, 0, 0], rot: -Math.PI / 2, len: CONFIG.arena.depth + fenceOffset * 2 }
       ];
       const fenceModel = fenceClone ? normalizeToHeight(fenceClone.root, null) : null;
       fenceSegments.forEach((segment) => {
@@ -5437,12 +5701,12 @@
           fence.position.set(segment.pos[0], 0.55, segment.pos[2]);
         }
         fence.rotation.y = segment.rot;
-        fence.scale.setScalar(1.1);
+        fence.scale.setScalar(Number(fenceConfig.scale) || 1.1);
         world.scene.add(fence);
         world.arenaObjects.push(fence);
         world.arenaDecor.push({
           kind: 'fence',
-          key: 'Fence_Long',
+          key: fenceConfig.key || 'Fence_Long',
           assetPath: fencePath,
           mesh: fence,
           visuals,
@@ -5453,6 +5717,8 @@
 
       world.arenaLayout = {
         livePvp: true,
+        mapId: mapDefinition.id,
+        fallbackSizes,
         fenceSegments
       };
     }
@@ -5553,7 +5819,12 @@
         if (entity.isPlayer && !livePvp.isSpectator) {
           const inputState = buildLivePvpInputState(entity);
           const predicted = currentPlayer.alive && !currentPlayer.eliminated
-            ? predictLocalPlayerState(currentPlayer, inputState, localPredictionSeconds)
+            ? predictLocalPlayerState(
+                currentPlayer,
+                inputState,
+                localPredictionSeconds,
+                livePvp.mapId || livePvp.snapshot?.mapId || PVP_DEFAULT_MAP_ID
+              )
             : null;
           configureEntityFromLiveSnapshot(entity, currentPlayer, predicted);
           return;
@@ -5576,16 +5847,18 @@
 
     function startLivePvpMatch(payload) {
       if (!payload?.snapshot) return;
+      const mapDefinition = getActiveMapDefinition(payload.mapId || payload.snapshot?.mapId || PVP_DEFAULT_MAP_ID);
 
       state.gameMode = payload.mode || 'duel';
       state.activeGameMode = state.gameMode;
       state.activeDifficulty = null;
+      state.activeMapId = mapDefinition.id;
       hud.dataset.gamemode = state.gameMode;
 
       clearArena();
       clearEntities();
       clearPickups();
-      buildPvpArena();
+      buildPvpArena(mapDefinition.id);
 
       const players = payload.snapshot.players || [];
       const liveRole = payload.role || livePvp.role || 'player';
@@ -5602,6 +5875,7 @@
       livePvp.active = true;
       livePvp.matchId = payload.matchId || payload.snapshot.matchId || null;
       livePvp.mode = payload.mode || payload.snapshot.mode || 'duel';
+      livePvp.mapId = mapDefinition.id;
       livePvp.role = liveRole;
       livePvp.isSpectator = liveRole === 'spectator';
       livePvp.team = livePvp.isSpectator ? null : (payload.team || null);
@@ -5632,6 +5906,14 @@
       if (!livePvp.active || livePvp.matchId !== payload.matchId) {
         startLivePvpMatch(payload);
         return;
+      }
+
+      const nextMapDefinition = getActiveMapDefinition(payload.mapId || payload.snapshot?.mapId || livePvp.mapId || PVP_DEFAULT_MAP_ID);
+      if (nextMapDefinition.id !== livePvp.mapId) {
+        livePvp.mapId = nextMapDefinition.id;
+        state.activeMapId = nextMapDefinition.id;
+        clearArena();
+        buildPvpArena(nextMapDefinition.id);
       }
 
       livePvp.previousSnapshot = livePvp.snapshot || payload;
@@ -10792,6 +11074,8 @@
       const payload = {
         mode: state.mode,
         gameMode: state.gameMode,
+        mapSelection: getSelectedMapSelection(),
+        mapId: state.activeMapId || PVP_DEFAULT_MAP_ID,
         viewMode: state.viewMode,
         difficulty: getDifficultyForMode(state.gameMode),
         visualState: visualState,
