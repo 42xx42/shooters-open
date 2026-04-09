@@ -243,6 +243,115 @@ const CROSSFIRE_COMBAT_SPAWNS = Object.freeze({
   ])
 });
 
+const STRONGHOLD_ARENA = Object.freeze({
+  width: 32,
+  depth: 24,
+  bounds: Object.freeze({
+    minX: -16,
+    maxX: 16,
+    minZ: -12,
+    maxZ: 12
+  }),
+  ground: Object.freeze({
+    width: 42,
+    depth: 32
+  })
+});
+
+const STRONGHOLD_COVER_LAYOUT = Object.freeze([
+  freezePlacement('Structure_1', 0, 0, 0, 2.5, 2.5),
+  freezePlacement('Barrier_Large', -3.8, 0, 0, 3.6, 1.2),
+  freezePlacement('Barrier_Large', 3.8, 0, Math.PI, 3.6, 1.2),
+  freezePlacement('Barrier_Large', 0, -4.6, Math.PI / 2, 3.6, 1.2),
+  freezePlacement('Barrier_Large', 0, 4.6, Math.PI / 2, 3.6, 1.2),
+  freezePlacement('SackTrench', -7.2, -4.8, 0, 2.4, 1.2),
+  freezePlacement('SackTrench', -7.2, 4.8, 0, 2.4, 1.2),
+  freezePlacement('SackTrench', 7.2, -4.8, Math.PI, 2.4, 1.2),
+  freezePlacement('SackTrench', 7.2, 4.8, Math.PI, 2.4, 1.2),
+  freezePlacement('Container_Small', -12.1, -8.3, 0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', -12.1, 8.3, -0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', 12.1, -8.3, Math.PI - 0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', 12.1, 8.3, -Math.PI + 0.12, 4.2, 2.2),
+  freezePlacement('Debris_BrokenCar', -10, 0, Math.PI / 2, 3.5, 2.0),
+  freezePlacement('Debris_BrokenCar', 10, 0, -Math.PI / 2, 3.5, 2.0),
+  freezePlacement('Sofa', -5.8, 0, Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Sofa', 5.8, 0, -Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Crate', -2.4, 8.8, 0.25, 1.2, 1.2),
+  freezePlacement('Crate', 2.4, -8.8, -0.25, 1.2, 1.2),
+  freezePlacement('Pallet', -5.6, 9.2, 0.3, 1.4, 1.4),
+  freezePlacement('Pallet', 5.6, -9.2, -0.3, 1.4, 1.4),
+  freezePlacement('CardboardBoxes_2', -1.5, -9.6, 0.2, 1.1, 1.1),
+  freezePlacement('CardboardBoxes_3', 1.5, 9.6, -0.2, 1.1, 1.1)
+]);
+
+const STRONGHOLD_DECORATIVE_PLACEMENTS = Object.freeze([
+  freezeDecor('TrafficCone', -14, -2, 0.1),
+  freezeDecor('TrafficCone', 14, 2, -0.1),
+  freezeDecor('TrafficCone', 0, -11, 0.2),
+  freezeDecor('TrafficCone', 0, 11, -0.2),
+  freezeDecor('CardboardBoxes_1', -13.6, 6.8, 0.3),
+  freezeDecor('CardboardBoxes_4', 13.6, -6.8, -0.3),
+  freezeDecor('Debris_Tires', -12, 3.5, 0.5),
+  freezeDecor('Debris_Tires', 12, -3.5, -0.5),
+  freezeDecor('Debris_Pile', -8.4, -10.2, 0.4),
+  freezeDecor('Debris_Pile', 8.4, 10.2, -0.4),
+  freezeDecor('Debris_Papers_1', -2.5, 2.8, 0.6),
+  freezeDecor('Debris_Papers_2', 2.5, -2.8, -0.6),
+  freezeDecor('GasCan', -6.8, 9.6, 0.2),
+  freezeDecor('GasCan', 6.8, -9.6, -0.3),
+  freezeDecor('WoodPlanks', -1.2, -10.5, 0.5),
+  freezeDecor('WoodPlanks', 1.2, 10.5, -0.5),
+  freezeDecor('Pallet_Broken', 11.8, 5.4, 0.3),
+  freezeDecor('Pallet_Broken', -11.8, -5.4, -0.4),
+  freezeDecor('Pipes', -15, 0, Math.PI / 2),
+  freezeDecor('Pipes', 15, 0, -Math.PI / 2),
+  freezeDecor('TrashContainer', -14.6, -9.4, 0.1),
+  freezeDecor('TrashContainer_Open', 14.6, 9.4, -0.1),
+  freezeDecor('StreetLight', -15, 8, 0),
+  freezeDecor('StreetLight', 15, -8, Math.PI),
+  freezeDecor('Sign', -13.8, 10.6, -0.2),
+  freezeDecor('Sign', 13.8, -10.6, 0.3)
+]);
+
+const STRONGHOLD_LOCAL_SPAWN_POINTS = Object.freeze([
+  freezeVector3(-12.8, 0, 0),
+  freezeVector3(12.8, 0, 0),
+  freezeVector3(0, 0, -10.2),
+  freezeVector3(0, 0, 10.2)
+]);
+
+const STRONGHOLD_LOCAL_BARREL_POSITIONS = Object.freeze([
+  freezeVector3(-8.2, 0, 0),
+  freezeVector3(8.2, 0, 0),
+  freezeVector3(0, 0, -7.2),
+  freezeVector3(0, 0, 7.2)
+]);
+
+const STRONGHOLD_LOCAL_NAV_SEEDS = Object.freeze([
+  freezeVector2(-12, 0),
+  freezeVector2(12, 0),
+  freezeVector2(-6.4, -4.8),
+  freezeVector2(-6.4, 4.8),
+  freezeVector2(6.4, -4.8),
+  freezeVector2(6.4, 4.8),
+  freezeVector2(0, -10),
+  freezeVector2(0, 10),
+  freezeVector2(0, 0)
+]);
+
+const STRONGHOLD_COMBAT_SPAWNS = Object.freeze({
+  duel: Object.freeze([
+    freezeVector2(-13.2, 0),
+    freezeVector2(13.2, 0)
+  ]),
+  deathmatch: Object.freeze([
+    freezeVector2(-12.8, 0),
+    freezeVector2(12.8, 0),
+    freezeVector2(0, -10.2),
+    freezeVector2(0, 10.2)
+  ])
+});
+
 export const PVP_MAPS = Object.freeze({
   classic: Object.freeze({
     id: 'classic',
@@ -297,6 +406,34 @@ export const PVP_MAPS = Object.freeze({
       }),
       coverLayout: CROSSFIRE_COVER_LAYOUT,
       spawnByMode: CROSSFIRE_COMBAT_SPAWNS,
+      fallbackSizes: CLASSIC_FALLBACK_SIZES
+    })
+  }),
+  stronghold: Object.freeze({
+    id: 'stronghold',
+    name: 'Stronghold',
+    arena: STRONGHOLD_ARENA,
+    local: Object.freeze({
+      spawnPoints: STRONGHOLD_LOCAL_SPAWN_POINTS,
+      coverLayout: STRONGHOLD_COVER_LAYOUT,
+      decorativePlacements: STRONGHOLD_DECORATIVE_PLACEMENTS,
+      fallbackSizes: CLASSIC_FALLBACK_SIZES,
+      barrelPositions: STRONGHOLD_LOCAL_BARREL_POSITIONS,
+      navSeedPoints: STRONGHOLD_LOCAL_NAV_SEEDS,
+      fence: Object.freeze({
+        key: 'Fence_Long',
+        offset: 0.4,
+        scale: 1.1
+      })
+    }),
+    combat: Object.freeze({
+      arena: Object.freeze({
+        width: STRONGHOLD_ARENA.width,
+        depth: STRONGHOLD_ARENA.depth,
+        bounds: STRONGHOLD_ARENA.bounds
+      }),
+      coverLayout: STRONGHOLD_COVER_LAYOUT,
+      spawnByMode: STRONGHOLD_COMBAT_SPAWNS,
       fallbackSizes: CLASSIC_FALLBACK_SIZES
     })
   })

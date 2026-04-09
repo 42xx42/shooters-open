@@ -464,22 +464,40 @@ test('combat result summary preserves map id metadata', () => {
 });
 
 test('non-default maps use their own spawn layout and preserve map metadata', () => {
-  const state = createInitialCombatState({
-    matchId: 'crossfire-map-test',
-    mode: 'deathmatch',
-    mapId: 'crossfire',
-    players: makePlayers(4)
-  });
+  const scenarios = [
+    {
+      mapId: 'crossfire',
+      expectedSpawns: [
+        [-12.2, 0],
+        [12.2, 0],
+        [0, -9.4],
+        [0, 9.4]
+      ]
+    },
+    {
+      mapId: 'stronghold',
+      expectedSpawns: [
+        [-12.8, 0],
+        [12.8, 0],
+        [0, -10.2],
+        [0, 10.2]
+      ]
+    }
+  ];
 
-  assert.equal(state.mapId, 'crossfire');
-  assert.deepEqual(
-    state.players.map((player) => [player.x, player.z]),
-    [
-      [-12.2, 0],
-      [12.2, 0],
-      [0, -9.4],
-      [0, 9.4]
-    ]
-  );
-  assert.equal(buildCombatSnapshot(state).mapId, 'crossfire');
+  for (const scenario of scenarios) {
+    const state = createInitialCombatState({
+      matchId: `${scenario.mapId}-map-test`,
+      mode: 'deathmatch',
+      mapId: scenario.mapId,
+      players: makePlayers(4)
+    });
+
+    assert.equal(state.mapId, scenario.mapId);
+    assert.deepEqual(
+      state.players.map((player) => [player.x, player.z]),
+      scenario.expectedSpawns
+    );
+    assert.equal(buildCombatSnapshot(state).mapId, scenario.mapId);
+  }
 });
