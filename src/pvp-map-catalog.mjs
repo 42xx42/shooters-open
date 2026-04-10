@@ -352,6 +352,124 @@ const STRONGHOLD_COMBAT_SPAWNS = Object.freeze({
   ])
 });
 
+const FRONTIER_ARENA = Object.freeze({
+  width: 40,
+  depth: 30,
+  bounds: Object.freeze({
+    minX: -20,
+    maxX: 20,
+    minZ: -15,
+    maxZ: 15
+  }),
+  ground: Object.freeze({
+    width: 52,
+    depth: 40
+  })
+});
+
+const FRONTIER_COVER_LAYOUT = Object.freeze([
+  freezePlacement('Container_Small', -4.4, 0, 0, 4.2, 2.2),
+  freezePlacement('Container_Small', 4.4, 0, 0, 4.2, 2.2),
+  freezePlacement('Barrier_Large', 0, -3.8, Math.PI / 2, 3.6, 1.2),
+  freezePlacement('Barrier_Large', 0, 3.8, Math.PI / 2, 3.6, 1.2),
+  freezePlacement('Crate', 0, 0, 0, 1.2, 1.2),
+  freezePlacement('Structure_1', -11.8, -7.2, 0, 2.5, 2.5),
+  freezePlacement('Structure_1', -11.8, 7.2, 0, 2.5, 2.5),
+  freezePlacement('Structure_1', 11.8, -7.2, Math.PI, 2.5, 2.5),
+  freezePlacement('Structure_1', 11.8, 7.2, Math.PI, 2.5, 2.5),
+  freezePlacement('SackTrench', -16.2, -3.4, Math.PI / 2, 2.4, 1.2),
+  freezePlacement('SackTrench', -16.2, 3.4, Math.PI / 2, 2.4, 1.2),
+  freezePlacement('SackTrench', 16.2, -3.4, Math.PI / 2, 2.4, 1.2),
+  freezePlacement('SackTrench', 16.2, 3.4, Math.PI / 2, 2.4, 1.2),
+  freezePlacement('Container_Small', -15.2, -11.2, 0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', -15.2, 11.2, -0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', 15.2, -11.2, Math.PI - 0.12, 4.2, 2.2),
+  freezePlacement('Container_Small', 15.2, 11.2, -Math.PI + 0.12, 4.2, 2.2),
+  freezePlacement('Debris_BrokenCar', -7.6, 0, Math.PI / 2, 3.5, 2.0),
+  freezePlacement('Debris_BrokenCar', 7.6, 0, -Math.PI / 2, 3.5, 2.0),
+  freezePlacement('Sofa', -3.6, -8.8, Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Sofa', 3.6, -8.8, -Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Sofa', -3.6, 8.8, Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Sofa', 3.6, 8.8, -Math.PI / 2, 2.0, 1.0),
+  freezePlacement('Pallet', -8.8, -11.4, 0.2, 1.4, 1.4),
+  freezePlacement('Pallet', -8.8, 11.4, -0.2, 1.4, 1.4),
+  freezePlacement('Pallet', 8.8, -11.4, 0.2, 1.4, 1.4),
+  freezePlacement('Pallet', 8.8, 11.4, -0.2, 1.4, 1.4),
+  freezePlacement('CardboardBoxes_2', -0.8, -12.1, 0.2, 1.1, 1.1),
+  freezePlacement('CardboardBoxes_3', 0.8, 12.1, -0.2, 1.1, 1.1)
+]);
+
+const FRONTIER_DECORATIVE_PLACEMENTS = Object.freeze([
+  freezeDecor('TrafficCone', -18, -1.8, 0.1),
+  freezeDecor('TrafficCone', 18, 1.8, -0.1),
+  freezeDecor('TrafficCone', 0, -13.6, 0.2),
+  freezeDecor('TrafficCone', 0, 13.6, -0.2),
+  freezeDecor('CardboardBoxes_1', -17.1, 8.8, 0.3),
+  freezeDecor('CardboardBoxes_4', 17.1, -8.8, -0.3),
+  freezeDecor('Debris_Tires', -15.4, 4.2, 0.5),
+  freezeDecor('Debris_Tires', 15.4, -4.2, -0.5),
+  freezeDecor('Debris_Pile', -10.6, -12.2, 0.4),
+  freezeDecor('Debris_Pile', 10.6, 12.2, -0.4),
+  freezeDecor('Debris_Papers_1', -2.8, 3.1, 0.6),
+  freezeDecor('Debris_Papers_2', 2.8, -3.1, -0.6),
+  freezeDecor('GasCan', -7.8, 11.1, 0.2),
+  freezeDecor('GasCan', 7.8, -11.1, -0.3),
+  freezeDecor('WoodPlanks', -2.4, -12.8, 0.5),
+  freezeDecor('WoodPlanks', 2.4, 12.8, -0.5),
+  freezeDecor('Pallet_Broken', 13.4, 7.4, 0.3),
+  freezeDecor('Pallet_Broken', -13.4, -7.4, -0.4),
+  freezeDecor('Pipes', -18.6, 0, Math.PI / 2),
+  freezeDecor('Pipes', 18.6, 0, -Math.PI / 2),
+  freezeDecor('TrashContainer', -17.8, -11.6, 0.1),
+  freezeDecor('TrashContainer_Open', 17.8, 11.6, -0.1),
+  freezeDecor('StreetLight', -18.4, 9.8, 0),
+  freezeDecor('StreetLight', 18.4, -9.8, Math.PI),
+  freezeDecor('Sign', -17.2, 13.1, -0.2),
+  freezeDecor('Sign', 17.2, -13.1, 0.3)
+]);
+
+const FRONTIER_LOCAL_SPAWN_POINTS = Object.freeze([
+  freezeVector3(-15.6, 0, 0),
+  freezeVector3(15.6, 0, 0),
+  freezeVector3(0, 0, -12.1),
+  freezeVector3(0, 0, 12.1)
+]);
+
+const FRONTIER_LOCAL_BARREL_POSITIONS = Object.freeze([
+  freezeVector3(-12.4, 0, -7.8),
+  freezeVector3(-12.4, 0, 7.8),
+  freezeVector3(12.4, 0, -7.8),
+  freezeVector3(12.4, 0, 7.8),
+  freezeVector3(0, 0, 0)
+]);
+
+const FRONTIER_LOCAL_NAV_SEEDS = Object.freeze([
+  freezeVector2(-16, 0),
+  freezeVector2(16, 0),
+  freezeVector2(0, -12),
+  freezeVector2(0, 12),
+  freezeVector2(-9, -7),
+  freezeVector2(-9, 7),
+  freezeVector2(9, -7),
+  freezeVector2(9, 7),
+  freezeVector2(-3, 0),
+  freezeVector2(3, 0),
+  freezeVector2(0, 0)
+]);
+
+const FRONTIER_COMBAT_SPAWNS = Object.freeze({
+  duel: Object.freeze([
+    freezeVector2(-16.4, 0),
+    freezeVector2(16.4, 0)
+  ]),
+  deathmatch: Object.freeze([
+    freezeVector2(-16, 0),
+    freezeVector2(16, 0),
+    freezeVector2(0, -12.4),
+    freezeVector2(0, 12.4)
+  ])
+});
+
 export const PVP_MAPS = Object.freeze({
   classic: Object.freeze({
     id: 'classic',
@@ -434,6 +552,34 @@ export const PVP_MAPS = Object.freeze({
       }),
       coverLayout: STRONGHOLD_COVER_LAYOUT,
       spawnByMode: STRONGHOLD_COMBAT_SPAWNS,
+      fallbackSizes: CLASSIC_FALLBACK_SIZES
+    })
+  }),
+  frontier: Object.freeze({
+    id: 'frontier',
+    name: 'Frontier',
+    arena: FRONTIER_ARENA,
+    local: Object.freeze({
+      spawnPoints: FRONTIER_LOCAL_SPAWN_POINTS,
+      coverLayout: FRONTIER_COVER_LAYOUT,
+      decorativePlacements: FRONTIER_DECORATIVE_PLACEMENTS,
+      fallbackSizes: CLASSIC_FALLBACK_SIZES,
+      barrelPositions: FRONTIER_LOCAL_BARREL_POSITIONS,
+      navSeedPoints: FRONTIER_LOCAL_NAV_SEEDS,
+      fence: Object.freeze({
+        key: 'Fence_Long',
+        offset: 0.4,
+        scale: 1.1
+      })
+    }),
+    combat: Object.freeze({
+      arena: Object.freeze({
+        width: FRONTIER_ARENA.width,
+        depth: FRONTIER_ARENA.depth,
+        bounds: FRONTIER_ARENA.bounds
+      }),
+      coverLayout: FRONTIER_COVER_LAYOUT,
+      spawnByMode: FRONTIER_COMBAT_SPAWNS,
       fallbackSizes: CLASSIC_FALLBACK_SIZES
     })
   })

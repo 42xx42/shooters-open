@@ -482,6 +482,15 @@ test('non-default maps use their own spawn layout and preserve map metadata', ()
         [0, -10.2],
         [0, 10.2]
       ]
+    },
+    {
+      mapId: 'frontier',
+      expectedSpawns: [
+        [-16, 0],
+        [16, 0],
+        [0, -12.4],
+        [0, 12.4]
+      ]
     }
   ];
 
