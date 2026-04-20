@@ -491,6 +491,24 @@ test('non-default maps use their own spawn layout and preserve map metadata', ()
         [0, -12.4],
         [0, 12.4]
       ]
+    },
+    {
+      mapId: 'bunker',
+      expectedSpawns: [
+        [-7.2, -4.2],
+        [7.2, 4.2],
+        [-7.2, 4.2],
+        [7.2, -4.2]
+      ]
+    },
+    {
+      mapId: 'warzone',
+      expectedSpawns: [
+        [-20.4, -12.6],
+        [20.4, 12.6],
+        [-20.4, 12.6],
+        [20.4, -12.6]
+      ]
     }
   ];
 
